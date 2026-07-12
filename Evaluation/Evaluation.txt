@@ -1,0 +1,12 @@
+1. Architectural Integrity and Generation Capability
+It proves whether 3D U-Net and sampling loop (like DDIM) can actually generate structured, cohesive 3D medical volumes from noise. If the SSIM and PSNR scores are high, it confirms the model has successfully learned the complex spatial geometry and anatomical structures of 4DCT lung scans rather than just outputting blurry or scrambled voxel data.
+
+2. Clinical and Anatomical Accuracy
+Mean Absolute Error (MAE): Proves how close the generated voxel intensities (Hounsfield Units/tissue densities) are to the real target scan. A low MAE means the synthetic scan is texturally realistic and reliable for downstream tasks.
+
+Peak Signal-to-Noise Ratio (PSNR): Proves the cleanliness of the generation. High PSNR shows that the model effectively cleared out the diffusion noise without introducing artificial corruption or digital artifacts.
+
+Structural Similarity Index (SSIM): Proves that the model preserved crucial anatomical boundaries, structural edges, and lung tissue interfaces, which are vital for medical tracking.
+
+3. Generalization Power
+By testing the model on a validation or test set it hasn't seen during its 5-epoch sanity check or full training, this evaluation proves that the model didn't just memorize the training dataset (overfitting). It demonstrates that your pipeline can reliably synthesize or reconstruct missing intermediate respiratory phases for entirely new patients.
